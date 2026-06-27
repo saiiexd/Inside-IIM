@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (finalState.errors && finalState.errors.length > 0) {
+    if (Array.isArray(finalState.errors) && finalState.errors.length > 0) {
       console.warn("Graph executed with errors:", finalState.errors);
       // Return 207 Multi-Status or 200 with error details if we got a partial report
       if (!finalState.finalReport) {

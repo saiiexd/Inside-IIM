@@ -1,65 +1,69 @@
-import Image from "next/image";
+"use client";
+
+import { useResearchStore } from "@/store/useResearchStore";
+import { HeroSection } from "@/components/features/HeroSection";
+import { AnalysisTimeline } from "@/components/features/AnalysisTimeline";
+import { ReportDashboard } from "@/components/features/ReportDashboard";
+import { AlertCircle, RefreshCw } from "lucide-react";
 
 export default function Home() {
+  const { isAnalyzing, report, error, reset, query } = useResearchStore();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="flex-1 w-full relative">
+      {/* Dynamic Backgrounds based on state */}
+      <div className={`absolute inset-0 -z-10 transition-opacity duration-1000 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-background to-background ${isAnalyzing || report ? 'opacity-0' : 'opacity-100'}`} />
+      
+      {!isAnalyzing && !report && !error && (
+        <HeroSection />
+      )}
+
+      {isAnalyzing && (
+        <div className="pt-24 px-4 min-h-[60vh]">
+          <AnalysisTimeline />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      )}
+
+      {error && !isAnalyzing && (
+        <div className="pt-32 px-4 flex flex-col items-center justify-center min-h-[50vh]">
+          <div className="bg-destructive/10 border border-destructive/20 p-8 rounded-3xl max-w-lg text-center space-y-6">
+            <div className="bg-destructive/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto text-destructive">
+              <AlertCircle className="w-8 h-8" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-destructive mb-2">Analysis Failed</h3>
+              <p className="text-muted-foreground">{error}</p>
+            </div>
+            <button 
+              onClick={reset}
+              className="inline-flex items-center justify-center bg-secondary hover:bg-secondary/80 text-secondary-foreground h-10 px-6 rounded-lg transition-colors font-medium gap-2"
+            >
+              <RefreshCw className="w-4 h-4" />
+              Try Again
+            </button>
+          </div>
         </div>
-      </main>
+      )}
+
+      {report && !isAnalyzing && (
+        <div className="w-full relative">
+          <div className="sticky top-16 z-40 bg-background/80 backdrop-blur-md border-b border-border/40 w-full">
+            <div className="container max-w-screen-2xl mx-auto flex items-center justify-between h-14 px-4 md:px-8">
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">Analysis for:</span>
+                <span className="font-semibold">{query}</span>
+              </div>
+              <button 
+                onClick={reset}
+                className="text-sm font-medium text-primary hover:underline underline-offset-4"
+              >
+                New Search
+              </button>
+            </div>
+          </div>
+          <ReportDashboard />
+        </div>
+      )}
     </div>
   );
 }
