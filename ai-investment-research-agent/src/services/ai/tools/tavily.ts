@@ -14,8 +14,8 @@ export const getTavilySearchTool = (maxResults = 5) => {
   return {
     invoke: async (query: string): Promise<string> => {
       const apiKey = process.env.TAVILY_API_KEY;
-      if (!apiKey) {
-        throw new Error("TAVILY_API_KEY environment variable is not set.");
+      if (!apiKey || apiKey === "your_tavily_api_key_here") {
+        throw new Error("Missing or invalid Tavily API Key. Please add your real key to .env.local");
       }
 
       const controller = new AbortController();

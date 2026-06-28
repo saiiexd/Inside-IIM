@@ -113,8 +113,7 @@ export const useResearchStore = create<ResearchStore>((set, get) => ({
       if (!res.ok) {
         const errData = data as { error?: string; details?: string[] };
         const message =
-          errData.error ??
-          (Array.isArray(errData.details) ? errData.details[0] : undefined) ??
+          (Array.isArray(errData.details) && errData.details.length > 0 ? errData.details[0] : errData.error) ??
           "Analysis failed. Please try again.";
         throw new Error(message);
       }

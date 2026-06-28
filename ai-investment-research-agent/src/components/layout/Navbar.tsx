@@ -22,7 +22,7 @@ export function Navbar() {
         {/* Right: version badge */}
         <div className="ml-auto">
           <span className="text-xs text-muted-foreground bg-secondary/60 border border-border/50 px-2.5 py-1 rounded-full font-medium">
-            v1.0 · Gemini 1.5 Pro
+            v1.0
           </span>
         </div>
       </div>

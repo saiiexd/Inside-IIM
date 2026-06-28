@@ -40,7 +40,12 @@ export const validateInputNode = async (
       normalizedCompanyName: response.normalizedCompanyName ?? raw,
     };
   } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "Unknown error";
+    let message = err instanceof Error ? err.message : "Unknown error";
+    if (message.includes("401") || message.includes("authentication")) {
+      message = "Groq API Error: The provided API key is invalid or unauthorized.";
+    } else if (message.includes("429")) {
+      message = "Groq API Error: Rate limit exceeded. Please try again later.";
+    }
     console.error("[validateInputNode]", message);
     return {
       isValid: false,
