@@ -17,21 +17,21 @@ import {
  * each push errors without overwriting each other.
  */
 const graphStateChannels = {
-  companyName: { value: null, default: () => "" },
-  normalizedCompanyName: { value: null },
-  isValid: { value: null },
+  companyName: null,
+  normalizedCompanyName: null,
+  isValid: null,
   errors: {
     value: (x: string[] | undefined, y: string[] | undefined) =>
       [...(x ?? []), ...(y ?? [])],
     default: () => [] as string[],
   },
-  researchData: { value: null },
-  financialData: { value: null },
-  newsData: { value: null },
-  swotData: { value: null },
-  riskData: { value: null },
-  decisionData: { value: null },
-  finalReport: { value: null },
+  researchData: null,
+  financialData: null,
+  newsData: null,
+  swotData: null,
+  riskData: null,
+  decisionData: null,
+  finalReport: null,
 };
 
 /**
