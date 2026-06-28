@@ -54,7 +54,7 @@ export function NewsPanel({ data }: NewsPanelProps) {
           <ul className="space-y-3" aria-label="Positive catalysts">
             {data.positiveCatalysts.map((item, i) => (
               <li key={i} className="flex items-start gap-2.5">
-                <span className="text-emerald-500 mt-0.5 text-xs leading-5">✓</span>
+                <span className="text-emerald-500 mt-0.5 text-xs leading-5 font-bold">+</span>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item}</p>
               </li>
             ))}
@@ -70,7 +70,7 @@ export function NewsPanel({ data }: NewsPanelProps) {
           <ul className="space-y-3" aria-label="Negative developments">
             {data.negativeDevelopments.map((item, i) => (
               <li key={i} className="flex items-start gap-2.5">
-                <span className="text-rose-500 mt-0.5 text-xs leading-5">✗</span>
+                <span className="text-rose-500 mt-0.5 text-xs leading-5 font-bold">-</span>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item}</p>
               </li>
             ))}

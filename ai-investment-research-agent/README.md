@@ -4,7 +4,7 @@ An institutional-grade, autonomous AI investment research platform. Built with N
 
 ![Hero Section](./docs/images/hero.png)
 
-## 🚀 Project Overview
+## Project Overview
 
 The AI Investment Research Agent demonstrates a production-ready application of agentic workflows in the financial domain. Rather than relying on a single, fragile LLM prompt, the application uses **LangGraph** to model the research process as a directed state graph. This allows for parallel execution where appropriate, state accumulation, and deterministic structured outputs using Zod.
 
@@ -16,7 +16,7 @@ This platform democratises institutional research by deploying autonomous AI age
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 - **Autonomous Agent Workflow:** Powered by LangGraph for deterministic, stateful execution.
 - **Strictly Typed AI Outputs:** Enforced by Zod schemas; the LLM is constrained to output exact JSON structures.
@@ -27,7 +27,7 @@ This platform democratises institutional research by deploying autonomous AI age
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Framework:** Next.js (App Router, React 19)
 - **AI Orchestration:** LangGraph.js, LangChain.js
@@ -39,7 +39,7 @@ This platform democratises institutional research by deploying autonomous AI age
 
 ---
 
-## 📐 Architecture
+## Architecture
 
 ### System Architecture
 
@@ -74,7 +74,7 @@ graph TD
 
 ---
 
-## ⚙️ Installation & Local Development
+## Installation & Local Development
 
 ### 1. Clone the repository
 ```bash
@@ -104,7 +104,7 @@ Navigate to `http://localhost:3000`.
 
 ---
 
-## 🚢 Production Build & Deployment
+## Production Build & Deployment
 
 The application is fully optimized for Vercel deployment.
 
@@ -121,7 +121,7 @@ The application is fully optimized for Vercel deployment.
 
 ---
 
-## 📚 Documentation & Interview Prep
+## Documentation & Interview Prep
 
 Comprehensive documentation has been prepared to explain every aspect of this project:
 
@@ -133,7 +133,7 @@ Comprehensive documentation has been prepared to explain every aspect of this pr
 
 ---
 
-## 🔌 API Documentation
+## API Documentation
 
 ### `POST /api/analyze`
 
@@ -157,6 +157,6 @@ Returns a heavily typed JSON object conforming to the `FinalReport` Zod schema.
 
 ---
 
-## 🤝 Acknowledgements
+## Acknowledgements
 
 Developed as a technical assignment for the AI Product Development Engineer Internship at Altuni AI Labs.

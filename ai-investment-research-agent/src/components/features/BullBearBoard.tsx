@@ -29,7 +29,7 @@ export function BullBearBoard({ report }: BullBearBoardProps) {
                 aria-hidden="true"
                 className="text-emerald-500/80 mt-0.5 text-xs leading-5 font-bold"
               >
-                ✓
+                +
               </span>
               <p className="text-sm text-muted-foreground leading-relaxed">{arg}</p>
             </li>
@@ -56,7 +56,7 @@ export function BullBearBoard({ report }: BullBearBoardProps) {
                 aria-hidden="true"
                 className="text-rose-500/80 mt-0.5 text-xs leading-5 font-bold"
               >
-                ✗
+                -
               </span>
               <p className="text-sm text-muted-foreground leading-relaxed">{arg}</p>
             </li>
