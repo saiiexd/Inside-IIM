@@ -1,12 +1,14 @@
 export function Footer() {
   return (
-    <footer className="w-full border-t border-border/40 py-6 md:py-0">
-      <div className="container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row px-4 md:px-8 mx-auto">
-        <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-          Built as a technical assignment. Powered by AI and LangGraph.
+    <footer className="w-full border-t border-border/40 py-6 mt-auto">
+      <div className="max-w-screen-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-4 md:px-8 text-xs text-muted-foreground">
+        <p>
+          Built with{" "}
+          <span className="font-medium text-foreground/70">LangGraph · Gemini 1.5 Pro · Next.js</span>
+          {" "}— AI Investment Research Agent
         </p>
-        <p className="text-center text-xs text-muted-foreground md:text-right max-w-sm">
-          <strong>Disclaimer:</strong> This generated investment analysis is AI-assisted research and should not be interpreted as professional financial advice.
+        <p className="text-center sm:text-right max-w-sm opacity-70">
+          <strong>Disclaimer:</strong> AI-generated analysis only. Not professional financial advice. Always consult a qualified advisor before investing.
         </p>
       </div>
     </footer>

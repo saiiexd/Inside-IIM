@@ -2,56 +2,79 @@ import { NextRequest, NextResponse } from "next/server";
 import { investmentResearchGraph } from "@/services/ai/graph";
 
 export async function POST(req: NextRequest) {
+  // ── 1. Parse & validate request body ─────────────────────────────────────
+  let body: unknown;
   try {
-    const body = await req.json();
-    const { companyName } = body;
+    body = await req.json();
+  } catch {
+    return NextResponse.json(
+      { error: "Malformed JSON in request body." },
+      { status: 400 },
+    );
+  }
 
-    if (!companyName || typeof companyName !== "string" || companyName.trim() === "") {
-      return NextResponse.json(
-        { error: "Invalid or missing companyName in request body." },
-        { status: 400 }
-      );
-    }
+  if (
+    typeof body !== "object" ||
+    body === null ||
+    !("companyName" in body) ||
+    typeof (body as Record<string, unknown>).companyName !== "string"
+  ) {
+    return NextResponse.json(
+      { error: "Request body must include a non-empty string field: companyName." },
+      { status: 400 },
+    );
+  }
 
-    const threadId = crypto.randomUUID();
-    const config = { configurable: { thread_id: threadId } };
+  const companyName = ((body as Record<string, unknown>).companyName as string).trim();
+  if (!companyName) {
+    return NextResponse.json(
+      { error: "companyName must not be empty." },
+      { status: 400 },
+    );
+  }
 
-    // Initial state
-    const initialState = {
-      companyName: companyName.trim(),
-      errors: [],
-    };
+  // ── 2. Execute the LangGraph workflow ────────────────────────────────────
+  try {
+    const config = { configurable: { thread_id: crypto.randomUUID() } };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const finalState = await (investmentResearchGraph as any).invoke(
+      { companyName, errors: [] },
+      config,
+    ) as import("@/services/ai/state").GraphState;
 
-    const finalState = await investmentResearchGraph.invoke(initialState, config);
-
+    // ── 3. Handle validation failure (unrecognised company) ─────────────────
     if (!finalState.isValid) {
       return NextResponse.json(
-        { 
-          error: "Validation failed", 
-          details: finalState.errors 
+        {
+          error: "Company validation failed.",
+          details: Array.isArray(finalState.errors) ? finalState.errors : [],
         },
-        { status: 422 }
+        { status: 422 },
       );
     }
 
-    if (Array.isArray(finalState.errors) && finalState.errors.length > 0) {
-      console.warn("Graph executed with errors:", finalState.errors);
-      // Return 207 Multi-Status or 200 with error details if we got a partial report
-      if (!finalState.finalReport) {
-         return NextResponse.json(
-          { error: "Analysis failed to complete.", details: finalState.errors },
-          { status: 500 }
-        );
-      }
+    // ── 4. Handle partial / incomplete report ────────────────────────────────
+    if (!finalState.finalReport) {
+      const errors = Array.isArray(finalState.errors) ? finalState.errors : [];
+      console.warn("[/api/analyze] Graph completed without a final report.", errors);
+      return NextResponse.json(
+        {
+          error: "The analysis pipeline could not produce a complete report.",
+          details: errors,
+        },
+        { status: 500 },
+      );
     }
 
+    // ── 5. Success ────────────────────────────────────────────────────────────
     return NextResponse.json(finalState.finalReport, { status: 200 });
-
-  } catch (error: any) {
-    console.error("API /analyze error:", error);
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "An unexpected error occurred.";
+    // Mask internal details — only log server-side
+    console.error("[/api/analyze] Unhandled error:", err);
     return NextResponse.json(
-      { error: "Internal Server Error", details: error.message },
-      { status: 500 }
+      { error: "Internal server error. Please try again later." },
+      { status: 500 },
     );
   }
 }

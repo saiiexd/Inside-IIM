@@ -1,66 +1,82 @@
 "use client";
 
-import { NewsAnalysis } from "@/services/ai/state";
+import type { NewsAnalysis } from "@/services/ai/state";
 import { ThumbsUp, ThumbsDown, Newspaper } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-export function NewsPanel({ data }: { data: NewsAnalysis }) {
-  const isPositive = data.marketSentiment === "Positive";
-  const isNeutral = data.marketSentiment === "Neutral";
-  
-  const sentimentColor = isPositive 
-    ? "text-green-500 bg-green-500/10 border-green-500/20" 
-    : isNeutral 
-    ? "text-yellow-500 bg-yellow-500/10 border-yellow-500/20" 
-    : "text-red-500 bg-red-500/10 border-red-500/20";
+interface NewsPanelProps {
+  data: NewsAnalysis;
+}
+
+const SENTIMENT_STYLES = {
+  Positive: "text-emerald-500 bg-emerald-500/10 border-emerald-500/20",
+  Neutral: "text-amber-500 bg-amber-500/10 border-amber-500/20",
+  Negative: "text-rose-500 bg-rose-500/10 border-rose-500/20",
+} as const;
+
+export function NewsPanel({ data }: NewsPanelProps) {
+  const sentimentStyle = SENTIMENT_STYLES[data.marketSentiment];
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-card border border-border p-5 rounded-2xl shadow-sm">
-        <div className="flex items-center gap-3">
-          <div className="bg-primary/10 p-2 rounded-lg text-primary">
-            <Newspaper className="w-5 h-5" />
+    <section aria-label="News and sentiment" className="space-y-5">
+      {/* Summary banner */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-card border border-border p-5 rounded-2xl shadow-sm">
+        <div className="flex items-start gap-3 min-w-0">
+          <div className="p-2 bg-primary/8 rounded-lg text-primary flex-shrink-0">
+            <Newspaper className="w-5 h-5" aria-hidden="true" />
           </div>
-          <div>
-            <h3 className="font-semibold">Recent Developments</h3>
-            <p className="text-sm text-muted-foreground line-clamp-1">{data.recentSummary}</p>
+          <div className="min-w-0">
+            <p className="font-semibold text-sm mb-1">Recent Developments</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              {data.recentSummary}
+            </p>
           </div>
         </div>
-        <div className={`px-3 py-1 rounded-full border text-xs font-semibold ${sentimentColor}`}>
+        <div
+          className={cn(
+            "self-start sm:self-center flex-shrink-0 px-3 py-1.5 rounded-full border text-xs font-semibold",
+            sentimentStyle,
+          )}
+          aria-label={`Market sentiment: ${data.marketSentiment}`}
+        >
           {data.marketSentiment} Sentiment
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-green-500/5 border border-green-500/10 rounded-2xl p-6">
-          <div className="flex items-center gap-2 mb-4 text-green-500">
-            <ThumbsUp className="w-5 h-5" />
-            <h4 className="font-semibold">Positive Catalysts</h4>
+      {/* Catalysts grid */}
+      <div className="grid md:grid-cols-2 gap-5">
+        {/* Positive */}
+        <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-2xl p-5">
+          <div className="flex items-center gap-2 mb-4 text-emerald-500">
+            <ThumbsUp className="w-4 h-4" aria-hidden="true" />
+            <h4 className="font-semibold text-sm">Positive Catalysts</h4>
           </div>
-          <ul className="space-y-3">
-            {data.positiveCatalysts.map((item, idx) => (
-              <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                <span className="text-green-500 mt-1">•</span>
-                <span>{item}</span>
+          <ul className="space-y-3" aria-label="Positive catalysts">
+            {data.positiveCatalysts.map((item, i) => (
+              <li key={i} className="flex items-start gap-2.5">
+                <span className="text-emerald-500 mt-0.5 text-xs leading-5">✓</span>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item}</p>
               </li>
             ))}
           </ul>
         </div>
-        
-        <div className="bg-red-500/5 border border-red-500/10 rounded-2xl p-6">
-          <div className="flex items-center gap-2 mb-4 text-red-500">
-            <ThumbsDown className="w-5 h-5" />
-            <h4 className="font-semibold">Negative Developments</h4>
+
+        {/* Negative */}
+        <div className="bg-rose-500/5 border border-rose-500/15 rounded-2xl p-5">
+          <div className="flex items-center gap-2 mb-4 text-rose-500">
+            <ThumbsDown className="w-4 h-4" aria-hidden="true" />
+            <h4 className="font-semibold text-sm">Negative Developments</h4>
           </div>
-          <ul className="space-y-3">
-            {data.negativeDevelopments.map((item, idx) => (
-              <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
-                <span className="text-red-500 mt-1">•</span>
-                <span>{item}</span>
+          <ul className="space-y-3" aria-label="Negative developments">
+            {data.negativeDevelopments.map((item, i) => (
+              <li key={i} className="flex items-start gap-2.5">
+                <span className="text-rose-500 mt-0.5 text-xs leading-5">✗</span>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item}</p>
               </li>
             ))}
           </ul>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

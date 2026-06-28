@@ -1,134 +1,145 @@
-import { create } from 'zustand';
-import { FinalReport } from '@/services/ai/state';
+import { create } from "zustand";
+import type { FinalReport } from "@/services/ai/state";
 
-export type LoadingStage = 
-  | 'idle'
-  | 'validating'
-  | 'researching'
-  | 'financials'
-  | 'news'
-  | 'swot'
-  | 'risk'
-  | 'decision'
-  | 'report'
-  | 'complete'
-  | 'error';
+// ── Loading stage type ──────────────────────────────────────────────────────
+export type LoadingStage =
+  | "idle"
+  | "validating"
+  | "researching"
+  | "financials"
+  | "news"
+  | "swot"
+  | "risk"
+  | "decision"
+  | "report"
+  | "complete"
+  | "error";
 
-interface ResearchState {
+// ── Store interface ─────────────────────────────────────────────────────────
+interface ResearchStore {
   query: string;
-  setQuery: (query: string) => void;
-  
   isAnalyzing: boolean;
   loadingStage: LoadingStage;
   error: string | null;
   report: FinalReport | null;
-  
+
   analyzeCompany: (companyName: string) => Promise<void>;
   reset: () => void;
   cancelRequest: () => void;
 }
 
-// Global abort controller to handle cancellations
-let abortController: AbortController | null = null;
-
-const stages: LoadingStage[] = [
-  'validating',
-  'researching',
-  'financials',
-  'news',
-  'swot',
-  'risk',
-  'decision',
-  'report',
-  'complete'
+// ── Stage progression (mirrors graph nodes) ─────────────────────────────────
+const STAGES: LoadingStage[] = [
+  "validating",
+  "researching",
+  "financials",
+  "news",
+  "swot",
+  "risk",
+  "decision",
+  "report",
+  "complete",
 ];
 
-export const useResearchStore = create<ResearchState>((set, get) => ({
-  query: '',
-  setQuery: (query: string) => set({ query }),
-  
+/** Module-level ref so abort works even after re-renders */
+let _abortController: AbortController | null = null;
+let _stageInterval: ReturnType<typeof setInterval> | null = null;
+
+const clearStageInterval = () => {
+  if (_stageInterval !== null) {
+    clearInterval(_stageInterval);
+    _stageInterval = null;
+  }
+};
+
+// ── Store ────────────────────────────────────────────────────────────────────
+export const useResearchStore = create<ResearchStore>((set, get) => ({
+  query: "",
   isAnalyzing: false,
-  loadingStage: 'idle',
+  loadingStage: "idle",
   error: null,
   report: null,
-  
+
   cancelRequest: () => {
-    if (abortController) {
-      abortController.abort();
-      abortController = null;
-    }
-    set({ isAnalyzing: false, loadingStage: 'idle' });
+    _abortController?.abort();
+    _abortController = null;
+    clearStageInterval();
+    set({ isAnalyzing: false, loadingStage: "idle" });
   },
 
   reset: () => {
     get().cancelRequest();
-    set({ query: '', error: null, report: null, loadingStage: 'idle' });
+    set({ query: "", error: null, report: null, loadingStage: "idle" });
   },
-  
+
   analyzeCompany: async (companyName: string) => {
-    // Cancel previous request if any
+    // Cancel any in-flight request before starting a new one
     get().cancelRequest();
-    
-    set({ 
-      isAnalyzing: true, 
-      loadingStage: 'validating', 
-      error: null, 
+
+    set({
+      isAnalyzing: true,
+      loadingStage: "validating",
+      error: null,
       report: null,
-      query: companyName 
+      query: companyName,
     });
-    
-    abortController = new AbortController();
 
-    // Setup a simulated timeline progression to give user feedback
-    // In a real WebSocket setup this would be event-driven.
-    // For HTTP, we fake the timeline based on time elapsed.
-    let currentStageIndex = 0;
-    const stageInterval = setInterval(() => {
-      currentStageIndex++;
-      if (currentStageIndex < stages.length - 1) { // Don't reach 'complete' via interval
-        set({ loadingStage: stages[currentStageIndex] });
+    _abortController = new AbortController();
+
+    // Simulate progressive stage display (≈5s per node; real API takes 40–60s)
+    let stageIndex = 0;
+    _stageInterval = setInterval(() => {
+      stageIndex += 1;
+      // Stay one before 'complete' — final stage set on API return
+      if (stageIndex < STAGES.length - 1) {
+        set({ loadingStage: STAGES[stageIndex] });
       } else {
-        clearInterval(stageInterval);
+        clearStageInterval();
       }
-    }, 4500); // Progress every 4.5s
-    
-    try {
-      const response = await fetch('/api/analyze', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ companyName }),
-        signal: abortController.signal,
-      });
-      
-      clearInterval(stageInterval);
+    }, 5_000);
 
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.error || data.details?.[0] || 'An error occurred during analysis.');
-      }
-      
-      set({ 
-        report: data as FinalReport, 
-        loadingStage: 'complete', 
-        isAnalyzing: false 
+    try {
+      const res = await fetch("/api/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ companyName }),
+        signal: _abortController.signal,
       });
-      
-    } catch (error: any) {
-      clearInterval(stageInterval);
-      if (error.name === 'AbortError') {
-        console.log('Request cancelled');
-        return;
+
+      clearStageInterval();
+
+      const data: unknown = await res.json();
+
+      if (!res.ok) {
+        const errData = data as { error?: string; details?: string[] };
+        const message =
+          errData.error ??
+          (Array.isArray(errData.details) ? errData.details[0] : undefined) ??
+          "Analysis failed. Please try again.";
+        throw new Error(message);
       }
-      set({ 
-        error: error.message || 'Failed to connect to the server.',
-        loadingStage: 'error',
-        isAnalyzing: false 
+
+      set({
+        report: data as FinalReport,
+        loadingStage: "complete",
+        isAnalyzing: false,
+      });
+    } catch (err: unknown) {
+      clearStageInterval();
+
+      // Silently handle user-initiated cancellations
+      if (err instanceof Error && err.name === "AbortError") return;
+
+      const message =
+        err instanceof Error ? err.message : "Failed to connect to the server.";
+
+      set({
+        error: message,
+        loadingStage: "error",
+        isAnalyzing: false,
       });
     } finally {
-      abortController = null;
+      _abortController = null;
     }
   },
 }));

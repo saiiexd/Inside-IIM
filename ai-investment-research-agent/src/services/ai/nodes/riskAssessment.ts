@@ -1,34 +1,35 @@
 import { GraphState } from "../state";
 import { getLLM } from "../llm";
-import { riskAssessmentPrompt } from "../prompts";
+import { PROMPTS } from "../prompts";
 import { riskAssessmentSchema } from "../schema";
 import { SystemMessage } from "@langchain/core/messages";
 
-export const riskAssessmentNode = async (state: GraphState): Promise<Partial<GraphState>> => {
+export const riskAssessmentNode = async (
+  state: GraphState,
+): Promise<Partial<GraphState>> => {
+  const companyName = state.normalizedCompanyName ?? state.companyName;
   try {
-    const llm = getLLM(0.3);
-    const structuredLlm = llm.withStructuredOutput(riskAssessmentSchema, {
+    const structuredLlm = getLLM(0.1).withStructuredOutput(riskAssessmentSchema, {
       name: "risk_assessment",
     });
 
-    const context = `
-      Company Research Data: ${JSON.stringify(state.researchData)}
-      Financial Analysis Data: ${JSON.stringify(state.financialData)}
-      News Analysis Data: ${JSON.stringify(state.newsData)}
-    `;
+    const context = [
+      `Company Overview: ${JSON.stringify(state.researchData)}`,
+      `Financial Analysis: ${JSON.stringify(state.financialData)}`,
+      `News Analysis: ${JSON.stringify(state.newsData)}`,
+    ].join("\n\n");
 
     const response = await structuredLlm.invoke([
-      new SystemMessage(riskAssessmentPrompt.replace("{companyName}", state.normalizedCompanyName || state.companyName)),
-      { role: "user", content: context }
+      new SystemMessage(PROMPTS.riskAssessment.replace("{companyName}", companyName)),
+      { role: "user", content: context },
     ]);
 
+    return { riskData: response };
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Unknown error";
+    console.error("[riskAssessmentNode]", message);
     return {
-      riskData: response,
-    };
-  } catch (error) {
-    console.error("Error in riskAssessmentNode:", error);
-    return {
-      errors: [...(state.errors || []), "An error occurred during risk assessment."],
+      errors: [...(state.errors ?? []), `Risk assessment failed: ${message}`],
     };
   }
 };

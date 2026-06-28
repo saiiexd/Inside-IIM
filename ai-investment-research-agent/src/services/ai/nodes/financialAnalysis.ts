@@ -1,37 +1,40 @@
 import { GraphState } from "../state";
 import { getLLM } from "../llm";
-import { financialAnalysisPrompt } from "../prompts";
+import { PROMPTS } from "../prompts";
 import { financialAnalysisSchema } from "../schema";
 import { SystemMessage } from "@langchain/core/messages";
 import { getTavilySearchTool } from "../tools/tavily";
 
-export const financialAnalysisNode = async (state: GraphState): Promise<Partial<GraphState>> => {
+export const financialAnalysisNode = async (
+  state: GraphState,
+): Promise<Partial<GraphState>> => {
+  const companyName = state.normalizedCompanyName ?? state.companyName;
   try {
-    const searchTool = getTavilySearchTool(3);
-    const searchResult = await searchTool.invoke(`Financial health, earnings, revenue, and valuation for ${state.normalizedCompanyName || state.companyName}`);
+    const searchTool = getTavilySearchTool(5);
+    const searchResult = await searchTool.invoke(
+      `${companyName} financial results: revenue growth, earnings, profit margin, debt, free cash flow, market cap, valuation 2024`,
+    );
 
-    const llm = getLLM(0.2);
-    const structuredLlm = llm.withStructuredOutput(financialAnalysisSchema, {
+    const structuredLlm = getLLM(0.1).withStructuredOutput(financialAnalysisSchema, {
       name: "financial_analysis",
     });
 
-    const context = `
-      Company Research Data: ${JSON.stringify(state.researchData)}
-      Additional Financial Search Data: ${searchResult}
-    `;
+    const context = [
+      `Company Overview: ${JSON.stringify(state.researchData)}`,
+      `Financial Search Results: ${searchResult}`,
+    ].join("\n\n");
 
     const response = await structuredLlm.invoke([
-      new SystemMessage(financialAnalysisPrompt.replace("{companyName}", state.normalizedCompanyName || state.companyName)),
-      { role: "user", content: context }
+      new SystemMessage(PROMPTS.financialAnalysis.replace("{companyName}", companyName)),
+      { role: "user", content: context },
     ]);
 
+    return { financialData: response };
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Unknown error";
+    console.error("[financialAnalysisNode]", message);
     return {
-      financialData: response,
-    };
-  } catch (error) {
-    console.error("Error in financialAnalysisNode:", error);
-    return {
-      errors: [...(state.errors || []), "An error occurred during financial analysis."],
+      errors: [...(state.errors ?? []), `Financial analysis failed: ${message}`],
     };
   }
 };

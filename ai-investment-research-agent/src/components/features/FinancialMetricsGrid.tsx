@@ -1,63 +1,93 @@
 "use client";
 
-import { FinancialAnalysis } from "@/services/ai/state";
-import { DollarSign, LineChart, Activity, Briefcase } from "lucide-react";
+import type { FinancialAnalysis } from "@/services/ai/state";
+import {
+  TrendingUp,
+  DollarSign,
+  Activity,
+  Briefcase,
+  CreditCard,
+  BarChart3,
+  AlertCircle,
+  CheckCircle2,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
 
-export function FinancialMetricsGrid({ data }: { data: FinancialAnalysis }) {
-  const metrics = [
-    { title: "Revenue Growth", value: data.revenueGrowthTrends, icon: TrendingUpIcon },
-    { title: "Profitability", value: data.profitability, icon: DollarSign },
-    { title: "Operating Margins", value: data.operatingMargins, icon: Activity },
-    { title: "Debt Levels", value: data.debtLevels, icon: Briefcase },
-    { title: "Cash Flow", value: data.cashFlowQuality, icon: LineChart },
-  ];
+interface MetricCardProps {
+  title: string;
+  value: string;
+  icon: React.ElementType;
+}
 
+function MetricCard({ title, value, icon: Icon }: MetricCardProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {metrics.map((metric, idx) => (
-        <div key={idx} className="bg-card border border-border/50 rounded-xl p-5 hover:border-border transition-colors">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 bg-primary/5 rounded-lg text-primary">
-              <metric.icon className="w-4 h-4" />
-            </div>
-            <h4 className="font-semibold text-sm">{metric.title}</h4>
-          </div>
-          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-            {metric.value}
-          </p>
+    <div className="bg-card border border-border/50 rounded-xl p-5 hover:border-border transition-colors duration-200">
+      <div className="flex items-center gap-3 mb-3">
+        <div className="p-2 bg-primary/8 rounded-lg text-primary flex-shrink-0">
+          <Icon className="w-4 h-4" aria-hidden="true" />
         </div>
-      ))}
-      <div className="bg-card border border-border/50 rounded-xl p-5 hover:border-border transition-colors">
-         <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 bg-primary/5 rounded-lg text-primary">
-              <Activity className="w-4 h-4" />
-            </div>
-            <h4 className="font-semibold text-sm">Overall Strength</h4>
-          </div>
-          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-            {data.overallFinancialStrength}
-          </p>
+        <h4 className="font-semibold text-sm">{title}</h4>
       </div>
+      <p className="text-sm text-muted-foreground leading-relaxed">{value}</p>
     </div>
   );
 }
 
-function TrendingUpIcon(props: any) {
+interface FinancialMetricsGridProps {
+  data: FinancialAnalysis;
+}
+
+export function FinancialMetricsGrid({ data }: FinancialMetricsGridProps) {
+  const metrics: MetricCardProps[] = [
+    { title: "Revenue Growth", value: data.revenueGrowthTrends, icon: TrendingUp },
+    { title: "Profitability", value: data.profitability, icon: DollarSign },
+    { title: "Operating Margins", value: data.operatingMargins, icon: Activity },
+    { title: "Cash Flow Quality", value: data.cashFlowQuality, icon: Briefcase },
+    { title: "Debt Levels", value: data.debtLevels, icon: CreditCard },
+    { title: "Earnings Trends", value: data.earningsTrends, icon: BarChart3 },
+  ];
+
+  const confidenceColor = {
+    High: "text-emerald-500",
+    Medium: "text-amber-500",
+    Low: "text-rose-500",
+  }[data.confidenceLevel];
+
+  const ConfidenceIcon = data.confidenceLevel === "High" ? CheckCircle2 : AlertCircle;
+
   return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
-      <polyline points="16 7 22 7 22 13" />
-    </svg>
+    <div className="space-y-4">
+      {/* Overall strength summary */}
+      <div className="bg-card border border-border rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+          <strong className="text-foreground">Financial Strength:</strong>{" "}
+          {data.overallFinancialStrength}
+        </p>
+        <div
+          className={cn(
+            "flex items-center gap-1.5 text-xs font-semibold flex-shrink-0",
+            confidenceColor,
+          )}
+          title={`Analyst confidence: ${data.confidenceLevel}`}
+        >
+          <ConfidenceIcon className="w-4 h-4" aria-hidden="true" />
+          {data.confidenceLevel} Confidence
+        </div>
+      </div>
+
+      {/* Metric cards grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" role="list" aria-label="Financial metrics">
+        {metrics.map((m) => (
+          <div key={m.title} role="listitem">
+            <MetricCard {...m} />
+          </div>
+        ))}
+        {data.valuationConcerns && (
+          <div role="listitem">
+            <MetricCard title="Valuation" value={data.valuationConcerns} icon={AlertCircle} />
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

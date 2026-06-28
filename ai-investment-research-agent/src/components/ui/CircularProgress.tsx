@@ -4,9 +4,12 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 interface CircularProgressProps {
+  /** Value between 0 and 100 */
   value: number;
+  /** Display size in px */
   size?: number;
   strokeWidth?: number;
+  /** Tailwind colour class e.g. "text-emerald-500" */
   color?: string;
   label?: string;
 }
@@ -18,19 +21,29 @@ export function CircularProgress({
   color = "text-primary",
   label,
 }: CircularProgressProps) {
-  const [animatedValue, setAnimatedValue] = useState(0);
+  const [animated, setAnimated] = useState(0);
   const radius = (size - strokeWidth) / 2;
-  const circumference = radius * 2 * Math.PI;
-  const offset = circumference - (animatedValue / 100) * circumference;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (animated / 100) * circumference;
 
   useEffect(() => {
-    const timeout = setTimeout(() => setAnimatedValue(value), 300);
-    return () => clearTimeout(timeout);
+    // Delay so the animation is visible after mount
+    const t = setTimeout(() => setAnimated(Math.min(100, Math.max(0, value))), 250);
+    return () => clearTimeout(t);
   }, [value]);
 
   return (
-    <div className="relative flex flex-col items-center justify-center">
-      <svg width={size} height={size} className="transform -rotate-90">
+    <figure
+      aria-label={`${label ?? "Score"}: ${value}`}
+      className="relative inline-flex flex-col items-center justify-center"
+    >
+      <svg
+        width={size}
+        height={size}
+        aria-hidden="true"
+        className="transform -rotate-90"
+      >
+        {/* Track */}
         <circle
           cx={size / 2}
           cy={size / 2}
@@ -38,8 +51,9 @@ export function CircularProgress({
           stroke="currentColor"
           strokeWidth={strokeWidth}
           fill="transparent"
-          className="text-muted opacity-20"
+          className="text-muted opacity-15"
         />
+        {/* Progress arc */}
         <motion.circle
           cx={size / 2}
           cy={size / 2}
@@ -47,20 +61,26 @@ export function CircularProgress({
           stroke="currentColor"
           strokeWidth={strokeWidth}
           fill="transparent"
+          strokeLinecap="round"
           strokeDasharray={circumference}
           initial={{ strokeDashoffset: circumference }}
           animate={{ strokeDashoffset: offset }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          transition={{ duration: 1.4, ease: "easeOut" }}
           className={color}
-          strokeLinecap="round"
         />
       </svg>
+
+      {/* Centre label */}
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-        <span className="text-3xl font-bold tracking-tighter">
-          {Math.round(animatedValue)}
+        <span className="text-3xl font-bold tabular-nums leading-none">
+          {Math.round(animated)}
         </span>
-        {label && <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold mt-1">{label}</span>}
+        {label && (
+          <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold mt-1">
+            {label}
+          </span>
+        )}
       </div>
-    </div>
+    </figure>
   );
 }

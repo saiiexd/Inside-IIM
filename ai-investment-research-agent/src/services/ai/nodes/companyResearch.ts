@@ -1,32 +1,35 @@
 import { GraphState } from "../state";
 import { getLLM } from "../llm";
-import { companyResearchPrompt } from "../prompts";
+import { PROMPTS } from "../prompts";
 import { companyResearchSchema } from "../schema";
 import { SystemMessage } from "@langchain/core/messages";
 import { getTavilySearchTool } from "../tools/tavily";
 
-export const companyResearchNode = async (state: GraphState): Promise<Partial<GraphState>> => {
+export const companyResearchNode = async (
+  state: GraphState,
+): Promise<Partial<GraphState>> => {
+  const companyName = state.normalizedCompanyName ?? state.companyName;
   try {
-    const searchTool = getTavilySearchTool(3);
-    const searchResult = await searchTool.invoke(`Comprehensive company overview and facts for ${state.normalizedCompanyName || state.companyName}`);
+    const searchTool = getTavilySearchTool(5);
+    const searchResult = await searchTool.invoke(
+      `${companyName} company overview: founded, CEO, headquarters, business model, products, revenue, industry sector`,
+    );
 
-    const llm = getLLM(0.2);
-    const structuredLlm = llm.withStructuredOutput(companyResearchSchema, {
+    const structuredLlm = getLLM(0.1).withStructuredOutput(companyResearchSchema, {
       name: "company_research",
     });
 
     const response = await structuredLlm.invoke([
-      new SystemMessage(companyResearchPrompt.replace("{companyName}", state.normalizedCompanyName || state.companyName)),
-      { role: "user", content: `Search Data: ${searchResult}` }
+      new SystemMessage(PROMPTS.companyResearch.replace("{companyName}", companyName)),
+      { role: "user", content: `Web Search Results:\n${searchResult}` },
     ]);
 
+    return { researchData: response };
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Unknown error";
+    console.error("[companyResearchNode]", message);
     return {
-      researchData: response,
-    };
-  } catch (error) {
-    console.error("Error in companyResearchNode:", error);
-    return {
-      errors: [...(state.errors || []), "An error occurred during company research."],
+      errors: [...(state.errors ?? []), `Company research failed: ${message}`],
     };
   }
 };
