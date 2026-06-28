@@ -26,9 +26,8 @@ export function SearchBar({ initialQuery = "", onQueryChange }: SearchBarProps) 
   const inputRef = useRef<HTMLInputElement>(null);
   const { analyzeCompany, isAnalyzing, reset } = useResearchStore();
 
-  // Sync when parent changes initialQuery (e.g., example chip click)
+  // Handle focus when initialQuery changes via key remount
   useEffect(() => {
-    setQuery(initialQuery);
     if (initialQuery) inputRef.current?.focus();
   }, [initialQuery]);
 

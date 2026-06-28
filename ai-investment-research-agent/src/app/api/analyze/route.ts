@@ -69,9 +69,8 @@ export async function POST(req: NextRequest) {
     // ── 5. Success ────────────────────────────────────────────────────────────
     return NextResponse.json(finalState.finalReport, { status: 200 });
   } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "An unexpected error occurred.";
     // Mask internal details — only log server-side
-    console.error("[/api/analyze] Unhandled error:", err);
+    console.error("[/api/analyze] Unhandled error:", err instanceof Error ? err.message : err);
     return NextResponse.json(
       { error: "Internal server error. Please try again later." },
       { status: 500 },

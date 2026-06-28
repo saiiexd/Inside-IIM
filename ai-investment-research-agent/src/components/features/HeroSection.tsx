@@ -100,7 +100,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.35 }}
           className="w-full"
         >
-          <SearchBar initialQuery={prefillQuery} onQueryChange={setPrefillQuery} />
+          <SearchBar key={prefillQuery} initialQuery={prefillQuery} onQueryChange={setPrefillQuery} />
         </motion.div>
 
         {/* Example companies */}
