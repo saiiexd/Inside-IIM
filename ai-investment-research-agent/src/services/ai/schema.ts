@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const companyResearchSchema = z.object({
   companyName: z.string().describe("The official name of the company"),
-  ticker: z.string().optional().describe("The stock ticker symbol if available"),
+  ticker: z.string().nullable().optional().describe("The stock ticker symbol if available"),
   headquarters: z.string().describe("Headquarters location"),
   ceo: z.string().describe("Current CEO"),
   foundingYear: z.number().describe("Year the company was founded"),
@@ -23,7 +23,7 @@ export const financialAnalysisSchema = z.object({
   cashFlowQuality: z.string().describe("Assessment of cash flow stability and quality"),
   debtLevels: z.string().describe("Analysis of debt and leverage"),
   valuationConcerns: z.string().describe("Any concerns regarding current valuation"),
-  marketCapitalization: z.string().optional().describe("Estimated market capitalization"),
+  marketCapitalization: z.string().nullable().optional().describe("Estimated market capitalization"),
   earningsTrends: z.string().describe("Recent earnings trends and surprises"),
   overallFinancialStrength: z.string().describe("Summary of overall financial health"),
   confidenceLevel: z.enum(["High", "Medium", "Low"]).describe("Confidence in the financial assessment"),

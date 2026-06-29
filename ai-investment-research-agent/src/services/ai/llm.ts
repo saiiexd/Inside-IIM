@@ -1,15 +1,21 @@
-import { ChatGroq } from "@langchain/groq";
+import { ChatOpenAI } from "@langchain/openai";
 
-/** Shared LLM factory – always server-side only. */
 export const getLLM = (temperature = 0) => {
-  const apiKey = process.env.GROQ_API_KEY;
-  if (!apiKey || apiKey === "your_groq_api_key_here") {
-    throw new Error("Missing or invalid Groq API Key. Please add your real key to .env.local");
+  const apiKey = process.env.OPENROUTER_API_KEY;
+  if (!apiKey || apiKey === "your_openrouter_api_key_here") {
+    throw new Error("Missing or invalid OpenRouter API Key. Please add your real key to .env.local");
   }
-  return new ChatGroq({
-    model: "llama-3.3-70b-versatile",
-    maxTokens: 8192,
+  return new ChatOpenAI({
+    model: "meta-llama/llama-3.3-70b-instruct:free",
     temperature,
     apiKey,
+    maxRetries: 10,
+    configuration: {
+      baseURL: "https://openrouter.ai/api/v1",
+      defaultHeaders: {
+        "HTTP-Referer": "http://localhost:3000",
+        "X-Title": "AI Investment Research Agent",
+      },
+    },
   });
 };

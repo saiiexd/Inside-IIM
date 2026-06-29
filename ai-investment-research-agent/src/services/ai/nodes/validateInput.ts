@@ -6,8 +6,8 @@ import { SystemMessage } from "@langchain/core/messages";
 
 const validationSchema = z.object({
   isValid: z.boolean(),
-  normalizedCompanyName: z.string().optional(),
-  error: z.string().optional(),
+  normalizedCompanyName: z.string().nullable().optional(),
+  error: z.string().nullable().optional(),
 });
 
 export const validateInputNode = async (
@@ -41,10 +41,10 @@ export const validateInputNode = async (
     };
   } catch (err: unknown) {
     let message = err instanceof Error ? err.message : "Unknown error";
-    if (message.includes("401") || message.includes("authentication")) {
-      message = "Groq API Error: The provided API key is invalid or unauthorized.";
+    if (message.includes("401") || message.includes("invalid_api_key")) {
+      message = "OpenRouter API Error: The provided API key is invalid or incorrect.";
     } else if (message.includes("429")) {
-      message = "Groq API Error: Rate limit exceeded. Please try again later.";
+      message = "OpenRouter API Error: Rate limit exceeded. Please check your OpenRouter dashboard limits.";
     }
     console.error("[validateInputNode]", message);
     return {
