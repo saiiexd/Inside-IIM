@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
     const finalState = await investmentResearchGraph.invoke(
       { companyName, errors: [] },
       config,
-    ) as import("@/services/ai/state").GraphState;
+    ) as unknown as import("@/services/ai/state").GraphState;
 
     // ── 3. Handle validation failure (unrecognised company) ─────────────────
     if (!finalState.isValid) {
