@@ -102,4 +102,4 @@ graph TD
 
 ---
 
-> **Bonus Requirement Note**: The complete LLM conversation transcript logs created during the development of this project have been exported and are available in the root directory as `LLM_CHAT_TRANSCRIPT.jsonl`.
+> **Bonus Requirement Note**: The complete LLM conversation transcript logs created during the development of this project, along with a summary of how AI was utilized, have been exported and are available in the `llm-development-logs/` directory.

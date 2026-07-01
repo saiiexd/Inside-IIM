@@ -35,6 +35,17 @@ const nextConfig: NextConfig = {
       ? { exclude: ["warn", "error"] }
       : false,
   },
+
+  // ── Server External Packages ──────────────────────────────────────────────
+  // Prevent Webpack from bundling LangChain/OpenAI, which avoids the zod/v4 missing module panic.
+  serverExternalPackages: [
+    "openai",
+    "@langchain/core",
+    "@langchain/openai",
+    "@langchain/community",
+    "@langchain/langgraph",
+    "@langchain/groq"
+  ],
 };
 
 export default nextConfig;
