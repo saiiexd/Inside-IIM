@@ -55,6 +55,7 @@ export const reportGenerationNode = async (
       ],
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return { finalReport: finalReport as any };
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Unknown error";
