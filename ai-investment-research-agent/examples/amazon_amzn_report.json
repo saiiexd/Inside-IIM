@@ -1,0 +1,140 @@
+{
+  "companyOverview": {
+    "companyName": "Amazon.com, Inc.",
+    "ticker": "AMZN",
+    "headquarters": "Seattle, Washington",
+    "ceo": "Andy Jassy",
+    "foundingYear": 1994,
+    "industry": "E-commerce & Cloud Computing",
+    "sector": "Consumer Discretionary / Technology",
+    "productsAndServices": [
+      "Amazon Web Services (AWS)",
+      "E-commerce Retail",
+      "Prime Subscription Services",
+      "Digital Advertising",
+      "Logistics and Fulfillment"
+    ],
+    "businessModel": "Operates a low-margin, high-volume global retail business subsidized by a high-margin, dominant cloud computing platform (AWS) and a rapidly growing advertising network.",
+    "marketPosition": "The undisputed leader in global e-commerce and the largest provider of cloud infrastructure in the world.",
+    "competitiveAdvantages": [
+      "Unmatched global logistics and fulfillment network",
+      "First-mover advantage and structural dominance in cloud computing (AWS)",
+      "Deeply entrenched Prime membership ecosystem"
+    ],
+    "customerSegments": [
+      "Global consumers",
+      "Small and Medium Businesses (Sellers)",
+      "Enterprise IT (AWS)",
+      "Advertisers"
+    ],
+    "companyOverview": "Amazon is a sprawling conglomerate that dominates two entirely distinct industries: retail logistics and enterprise cloud computing. Under CEO Andy Jassy, the company has transitioned from a hyper-growth cash burner into a mature, highly profitable cash flow machine by optimizing its fulfillment network and leveraging AWS."
+  },
+  "financialSummary": {
+    "revenueGrowthTrends": "Consistent double-digit growth across AWS, advertising, and retail. AWS growth has re-accelerated following a period of enterprise optimization.",
+    "profitability": "Operating margins are expanding significantly as the high-margin advertising and AWS segments grow faster than the low-margin retail business.",
+    "operatingMargins": "Blended operating margins are reaching historic highs due to regionalization of the fulfillment network and aggressive cost-cutting.",
+    "cashFlowQuality": "Generating staggering amounts of free cash flow, recovering rapidly from the massive CAPEX binge during the pandemic.",
+    "debtLevels": "Extremely healthy balance sheet. Cash reserves easily exceed total debt.",
+    "valuationConcerns": "Trading at a premium valuation, but justified by the rapid expansion of operating margins and free cash flow.",
+    "marketCapitalization": "$1.9 Trillion+",
+    "earningsTrends": "Consecutive quarters of massive earnings beats driven by retail efficiency and AWS acceleration.",
+    "overallFinancialStrength": "Exceptionally strong. The retail business is now self-funding, allowing AWS profits to drop directly to the bottom line.",
+    "confidenceLevel": "High"
+  },
+  "newsSummary": {
+    "positiveCatalysts": [
+      "Re-acceleration of AWS revenue growth due to generative AI workloads.",
+      "Record profitability in the North American retail segment.",
+      "Continued explosive growth in the digital advertising business."
+    ],
+    "negativeDevelopments": [
+      "FTC antitrust lawsuit seeking to break up or heavily regulate the e-commerce marketplace.",
+      "Intensifying competition from Chinese ultra-discount retailers (Temu, Shein)."
+    ],
+    "marketSentiment": "Positive",
+    "recentSummary": "The news cycle is highly favorable, highlighting margin expansion and AWS dominance, with the only dark cloud being regulatory scrutiny from the FTC."
+  },
+  "swotAnalysis": {
+    "strengths": [
+      "AWS is the backbone of the modern internet.",
+      "Logistics network that cannot be replicated by any competitor.",
+      "High-margin advertising business embedded natively in the retail search experience."
+    ],
+    "weaknesses": [
+      "International retail remains a structural drag on overall profitability.",
+      "Heavy reliance on third-party sellers who often complain about fees and policies."
+    ],
+    "opportunities": [
+      "Monetizing generative AI models (Bedrock) for enterprise AWS customers.",
+      "Expanding the advertising business into Prime Video.",
+      "Healthcare (One Medical) and satellite internet (Project Kuiper)."
+    ],
+    "threats": [
+      "Microsoft Azure taking cloud market share via OpenAI integration.",
+      "FTC antitrust action forcing changes to the Prime or Seller ecosystems.",
+      "Macroeconomic slowdown impacting consumer discretionary spending."
+    ]
+  },
+  "riskAnalysis": {
+    "operationalRisk": {
+      "level": "Low",
+      "explanation": "Masterclass in operational efficiency and logistics management."
+    },
+    "financialRisk": {
+      "level": "Low",
+      "explanation": "Massive free cash flow generation and a fortress balance sheet."
+    },
+    "technologicalRisk": {
+      "level": "Medium",
+      "explanation": "Must ensure AWS does not fall behind Microsoft Azure in the generative AI arms race."
+    },
+    "regulatoryRisk": {
+      "level": "High",
+      "explanation": "The FTC is actively suing Amazon, and European regulators continually probe their data practices."
+    },
+    "competitiveRisk": {
+      "level": "Medium",
+      "explanation": "Facing pressure from Temu/Shein in retail and Microsoft in cloud."
+    },
+    "geopoliticalExposure": {
+      "level": "Low",
+      "explanation": "Primarily focused on North America and Europe; less exposed to China than Apple or Tesla."
+    },
+    "executionRisk": {
+      "level": "Low",
+      "explanation": "Andy Jassy has successfully shifted the company focus to profitability without sacrificing growth."
+    },
+    "valuationRisk": {
+      "level": "Medium",
+      "explanation": "Priced for continued margin expansion; any reversion to low-margin retail growth would compress the multiple."
+    },
+    "macroeconomicSensitivity": {
+      "level": "Medium",
+      "explanation": "Retail is highly sensitive to consumer health, while AWS is defensive but still subject to enterprise IT budgets."
+    }
+  },
+  "investmentScore": 85,
+  "confidenceScore": 92,
+  "bullCase": [
+    "AWS re-acceleration driven by AI will mechanically expand overall corporate margins.",
+    "The advertising business is a hidden gem growing at 20%+ with software-like margins.",
+    "Retail fulfillment has been structurally fixed post-pandemic, turning a cost center into a profit driver."
+  ],
+  "bearCase": [
+    "FTC intervention could break the flywheel that connects Prime, Logistics, and Retail.",
+    "Microsoft Azure's AI lead could permanently dethrone AWS as the default cloud provider.",
+    "Consumer exhaustion due to inflation could stall retail revenue."
+  ],
+  "finalRecommendation": "Invest",
+  "executiveSummary": "Amazon has entered a new era of structural profitability. By regionalizing its fulfillment network and leaning into high-margin segments like Advertising and AWS, the company is generating unprecedented free cash flow. While regulatory risks from the FTC are non-trivial and Microsoft poses a formidable threat in the AI cloud space, Amazon's diversified monopolies offer an incredible risk-adjusted return profile. We recommend an 'Invest' stance, viewing Amazon as a foundational tech holding.",
+  "disclaimer": "This is an AI-generated investment research report and should not be considered professional financial advice. Do your own research.",
+  "processingMetadata": {
+    "timestamp": "2026-07-01T12:50:00Z",
+    "model": "llama-3.3-70b-instruct"
+  },
+  "sources": [
+    "Tavily Search API",
+    "SEC Filings & Market Reports",
+    "Financial News Feeds"
+  ]
+}

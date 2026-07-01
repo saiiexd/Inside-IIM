@@ -1,0 +1,139 @@
+{
+  "companyOverview": {
+    "companyName": "Apple Inc.",
+    "ticker": "AAPL",
+    "headquarters": "Cupertino, California",
+    "ceo": "Tim Cook",
+    "foundingYear": 1976,
+    "industry": "Consumer Electronics",
+    "sector": "Technology",
+    "productsAndServices": [
+      "iPhone",
+      "Mac",
+      "iPad",
+      "Wearables (Apple Watch, AirPods)",
+      "Services (App Store, Apple Music, iCloud, Apple Pay)"
+    ],
+    "businessModel": "Premium consumer electronics hardware tightly integrated with a high-margin proprietary software and services ecosystem.",
+    "marketPosition": "One of the most valuable companies in the world, holding a dominant premium market share in smartphones globally.",
+    "competitiveAdvantages": [
+      "Unmatched brand loyalty and pricing power",
+      "Walled garden ecosystem creating high switching costs",
+      "Industry-leading custom silicon (M-series chips)"
+    ],
+    "customerSegments": [
+      "Premium consumer market",
+      "Creative professionals",
+      "Enterprise"
+    ],
+    "companyOverview": "Apple is a global technology titan renowned for its design-centric hardware and seamless software integration. While hardware sales remain the primary revenue driver, the Services segment has become a critical, high-margin growth engine that monetizes its massive installed base of over two billion active devices."
+  },
+  "financialSummary": {
+    "revenueGrowthTrends": "Revenue growth has slowed to single digits as the smartphone market matures, relying increasingly on the Services segment to drive top-line expansion.",
+    "profitability": "Exceptional profitability. Gross margins continue to expand structurally due to the growing mix of high-margin Services revenue.",
+    "operatingMargins": "Operating margins are consistently near 30%, which is extraordinary for a company producing physical hardware at this massive scale.",
+    "cashFlowQuality": "Generates staggering amounts of free cash flow, allowing for the largest stock repurchase program in corporate history.",
+    "debtLevels": "Maintains a highly strategic capital structure, utilizing low-interest debt to fund buybacks while remaining comfortably net-cash positive.",
+    "valuationConcerns": "Trading at a historically elevated P/E multiple despite low top-line growth, heavily buoyed by its safe-haven status and massive buybacks.",
+    "marketCapitalization": "$3.3 Trillion+",
+    "earningsTrends": "Consistent earnings beats, largely engineered through aggressive share count reduction rather than massive net income expansion.",
+    "overallFinancialStrength": "An absolute financial fortress. Warren Buffett's largest holding for good reason.",
+    "confidenceLevel": "High"
+  },
+  "newsSummary": {
+    "positiveCatalysts": [
+      "Introduction of 'Apple Intelligence' (AI features) driving a potential iPhone super-cycle.",
+      "Continued double-digit growth in the Services segment.",
+      "Authorization of a new record-breaking $110 billion share buyback program."
+    ],
+    "negativeDevelopments": [
+      "Weakening sales and aggressive discounting in China amidst rising domestic competition (Huawei).",
+      "Intensifying antitrust scrutiny globally (DOJ lawsuit in the US, DMA compliance in the EU)."
+    ],
+    "marketSentiment": "Neutral",
+    "recentSummary": "News is a tug-of-war between the bullish narrative of an AI-driven hardware upgrade cycle and the bearish realities of regulatory crackdowns and Chinese market weakness."
+  },
+  "swotAnalysis": {
+    "strengths": [
+      "Over 2.2 billion active devices worldwide.",
+      "World-class supply chain execution under Tim Cook.",
+      "Custom silicon provides significant performance-per-watt advantages over competitors."
+    ],
+    "weaknesses": [
+      "Heavy reliance on a single product line (iPhone accounts for ~50% of revenue).",
+      "Perceived lag in generative AI capabilities compared to Microsoft and Google."
+    ],
+    "opportunities": [
+      "Monetizing Apple Intelligence through upgraded hardware cycles or premium subscriptions.",
+      "Expansion in emerging markets like India for both manufacturing and retail.",
+      "Further penetration into healthcare tech."
+    ],
+    "threats": [
+      "Regulatory forced opening of the App Store and NFC ecosystem (threatening Services revenue).",
+      "Geopolitical reliance on China for both manufacturing (Foxconn) and sales.",
+      "Consumer fatigue resulting in lengthening device upgrade cycles."
+    ]
+  },
+  "riskAnalysis": {
+    "operationalRisk": {
+      "level": "Low",
+      "explanation": "Supply chain management is best-in-class, though geographic concentration is a known factor."
+    },
+    "financialRisk": {
+      "level": "Low",
+      "explanation": "Unmatched cash generation and pristine credit quality."
+    },
+    "technologicalRisk": {
+      "level": "Medium",
+      "explanation": "Must successfully execute Apple Intelligence to prove they haven't fallen behind in the AI era."
+    },
+    "regulatoryRisk": {
+      "level": "High",
+      "explanation": "The US DOJ lawsuit and the EU Digital Markets Act directly threaten the high-margin Services monopoly."
+    },
+    "competitiveRisk": {
+      "level": "Medium",
+      "explanation": "Strong competition in China from Huawei, but globally the iOS/Android duopoly remains incredibly stable."
+    },
+    "geopoliticalExposure": {
+      "level": "High",
+      "explanation": "Highly exposed to US-China tensions due to heavy reliance on Chinese manufacturing and the importance of the Chinese consumer market."
+    },
+    "executionRisk": {
+      "level": "Low",
+      "explanation": "Tim Cook's operational execution is historically flawless."
+    },
+    "valuationRisk": {
+      "level": "Medium",
+      "explanation": "Priced as a growth stock despite operating as a mature cash cow."
+    },
+    "macroeconomicSensitivity": {
+      "level": "Low",
+      "explanation": "The iPhone is increasingly treated as an essential utility rather than discretionary spending, though Pro models are sensitive to consumer sentiment."
+    }
+  },
+  "investmentScore": 75,
+  "confidenceScore": 90,
+  "bullCase": [
+    "Apple Intelligence will force a massive hardware upgrade super-cycle for older iPhones.",
+    "Services growth continues unabated, mechanically driving margin expansion.",
+    "The relentless $100B+ annual buyback program guarantees EPS growth even with flat revenues."
+  ],
+  "bearCase": [
+    "Antitrust regulators will successfully dismantle the App Store monopoly, crushing Services margins.",
+    "The Chinese market is permanently lost to domestic competitors.",
+    "Valuation is too stretched for a company growing top-line revenue at 2%."
+  ],
+  "finalRecommendation": "Hold",
+  "executiveSummary": "Apple is a foundational portfolio asset characterized by an impenetrable ecosystem, staggering cash flows, and shareholder-friendly capital returns. However, current valuation multiples demand significant growth that is entirely dependent on an AI-driven iPhone super-cycle materializing. Combined with severe antitrust headwinds targeting their most profitable segment (Services) and weakness in China, the risk-reward is currently balanced. We recommend a 'Hold' for existing investors, treating Apple as a highly stable cash-compounder rather than an aggressive growth play.",
+  "disclaimer": "This is an AI-generated investment research report and should not be considered professional financial advice. Do your own research.",
+  "processingMetadata": {
+    "timestamp": "2026-07-01T12:35:00Z",
+    "model": "llama-3.3-70b-instruct"
+  },
+  "sources": [
+    "Tavily Search API",
+    "SEC Filings & Market Reports",
+    "Financial News Feeds"
+  ]
+}

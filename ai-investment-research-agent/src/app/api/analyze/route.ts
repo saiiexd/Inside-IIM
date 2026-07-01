@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { investmentResearchGraph } from "@/services/ai/graph";
 
+export const maxDuration = 60; // Extend Vercel hobby tier timeout to max
+
 export async function POST(req: NextRequest) {
   // ── 1. Parse & validate request body ─────────────────────────────────────
   let body: unknown;
@@ -33,11 +35,12 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // ── 3. Execute the LangGraph workflow ────────────────────────────────────
+  // ── 2. Execute the LangGraph workflow ────────────────────────────────────
   try {
     const config = { configurable: { thread_id: crypto.randomUUID() } };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const finalState = await (investmentResearchGraph as any).invoke(
+    
+    // Execute the compiled state graph with strict typing
+    const finalState = await investmentResearchGraph.invoke(
       { companyName, errors: [] },
       config,
     ) as import("@/services/ai/state").GraphState;

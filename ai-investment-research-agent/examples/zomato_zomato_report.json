@@ -1,0 +1,138 @@
+{
+  "companyOverview": {
+    "companyName": "Zomato Limited",
+    "ticker": "ZOMATO.NS",
+    "headquarters": "Gurugram, India",
+    "ceo": "Deepinder Goyal",
+    "foundingYear": 2008,
+    "industry": "Food Delivery & Quick Commerce",
+    "sector": "Consumer Discretionary",
+    "productsAndServices": [
+      "Zomato Food Delivery",
+      "Blinkit (Quick Commerce)",
+      "Hyperpure (B2B Supplies for Restaurants)",
+      "Zomato Dining Out"
+    ],
+    "businessModel": "Hyper-local logistics platform monetizing through delivery fees, restaurant commissions, and advertising, while expanding aggressively into 10-minute grocery delivery.",
+    "marketPosition": "Operates in a duopoly (with Swiggy) in Indian food delivery, and is currently the market leader in the rapidly growing quick commerce sector (Blinkit).",
+    "competitiveAdvantages": [
+      "Massive, highly engaged user base in urban India",
+      "Unmatched hyper-local delivery fleet density",
+      "Blinkit's dark store network creates a massive barrier to entry"
+    ],
+    "customerSegments": [
+      "Urban Indian consumers",
+      "Restaurants and cloud kitchens",
+      "FMCG brands (advertising on Blinkit)"
+    ],
+    "companyOverview": "Zomato is a pioneering Indian consumer tech company that has successfully navigated the brutal economics of food delivery to achieve profitability. Through its acquisition of Blinkit, it has successfully pioneered the 'quick commerce' (10-minute delivery) revolution in India, transforming consumer purchasing habits."
+  },
+  "financialSummary": {
+    "revenueGrowthTrends": "Exceptional hyper-growth driven entirely by the explosive expansion of Blinkit and steady compounding in core food delivery.",
+    "profitability": "Achieved structural profitability (positive PAT) after years of heavy cash burn, proving the underlying unit economics work at scale.",
+    "operatingMargins": "Margins are thin but expanding as advertising revenue (high margin) scales across both Zomato and Blinkit.",
+    "cashFlowQuality": "Positive operating cash flow, though capital is continually reinvested into opening new Blinkit dark stores.",
+    "debtLevels": "Zero debt. Extremely strong cash position post-IPO.",
+    "valuationConcerns": "Valuation is extremely rich, trading at very high revenue multiples. The market is pricing in flawless execution and continued hyper-growth in Blinkit.",
+    "marketCapitalization": "$20 Billion+",
+    "earningsTrends": "Consecutive quarters of beating profitability estimates, surprising analysts who doubted the viability of quick commerce.",
+    "overallFinancialStrength": "Fundamentally sound. The transition from cash-burning startup to profitable compounder is complete.",
+    "confidenceLevel": "High"
+  },
+  "newsSummary": {
+    "positiveCatalysts": [
+      "Blinkit achieving operational profitability much faster than anticipated.",
+      "Expansion into new categories (electronics, apparel) via 10-minute delivery.",
+      "Competitor Swiggy's impending IPO drawing favorable valuation comparisons."
+    ],
+    "negativeDevelopments": [
+      "Pushback from traditional retail associations regarding predatory pricing.",
+      "Intermittent gig-worker strikes over payout structures."
+    ],
+    "marketSentiment": "Positive",
+    "recentSummary": "The narrative is overwhelmingly bullish, focused almost entirely on the stunning success and rapid scaling of the Blinkit quick commerce platform."
+  },
+  "swotAnalysis": {
+    "strengths": [
+      "First-mover advantage and market leadership in Quick Commerce.",
+      "Duopoly structure in food delivery ensures rational pricing and lower discounting.",
+      "Highly capable, agile management team."
+    ],
+    "weaknesses": [
+      "Business model relies heavily on low-cost gig labor, which faces regulatory risk.",
+      "Extremely high valuation leaves no room for execution missteps."
+    ],
+    "opportunities": [
+      "Expanding Blinkit into higher-ticket items (electronics, beauty) to drive up Average Order Value (AOV).",
+      "Scaling the B2B Hyperpure business to capture the entire restaurant supply chain.",
+      "Monetizing the massive user base through fintech or loyalty programs."
+    ],
+    "threats": [
+      "Zepto and Swiggy Instamart aggressively raising capital to fight a market share war in quick commerce.",
+      "Potential government regulations classifying gig workers as employees.",
+      "Entry of deep-pocketed players like Reliance or Tata into the 10-minute delivery space."
+    ]
+  },
+  "riskAnalysis": {
+    "operationalRisk": {
+      "level": "Medium",
+      "explanation": "Managing a fleet of hundreds of thousands of gig workers and hundreds of dark stores is inherently complex and prone to localized disruptions."
+    },
+    "financialRisk": {
+      "level": "Low",
+      "explanation": "Cash rich and profitable, eliminating reliance on external VC funding."
+    },
+    "technologicalRisk": {
+      "level": "Low",
+      "explanation": "The tech stack is mature and highly optimized for hyper-local routing."
+    },
+    "regulatoryRisk": {
+      "level": "High",
+      "explanation": "Labor laws regarding gig workers and FDI rules regarding e-commerce inventory models are constant threats in India."
+    },
+    "competitiveRisk": {
+      "level": "High",
+      "explanation": "The quick commerce space is witnessing intense capital dumping from Zepto and Swiggy."
+    },
+    "geopoliticalExposure": {
+      "level": "Low",
+      "explanation": "Purely a domestic India play."
+    },
+    "executionRisk": {
+      "level": "Medium",
+      "explanation": "They must continue opening dark stores at a breakneck pace without degrading unit economics."
+    },
+    "valuationRisk": {
+      "level": "High",
+      "explanation": "Priced for absolute perfection. Any deceleration in Blinkit's growth will cause a severe correction."
+    },
+    "macroeconomicSensitivity": {
+      "level": "Medium",
+      "explanation": "Food delivery is discretionary, but quick commerce (groceries) is highly defensive."
+    }
+  },
+  "investmentScore": 72,
+  "confidenceScore": 85,
+  "bullCase": [
+    "Blinkit is fundamentally disrupting the $800B Indian retail market, replacing local Kirana stores and Amazon alike.",
+    "The duopoly in food delivery is a cash cow that will fund quick commerce expansion forever.",
+    "Ad revenue will mechanically drive up EBITDA margins as FMCG brands fight for visibility on Blinkit."
+  ],
+  "bearCase": [
+    "The valuation is entirely detached from current earnings, requiring years of hyper-growth to justify.",
+    "Zepto's aggressive funding will trigger a margin-destroying price war in quick commerce.",
+    "Regulatory changes to gig worker classifications would instantly destroy the unit economics."
+  ],
+  "finalRecommendation": "Hold",
+  "executiveSummary": "Zomato is executing flawlessly, having successfully transformed Blinkit from a distressed acquisition into the crown jewel of Indian consumer tech. The underlying unit economics of quick commerce have proven surprisingly robust. However, the market is fully aware of this success, and the stock is priced for absolute perfection. Given the looming threat of intense competition from Zepto and Swiggy, alongside significant gig-worker regulatory risks, the current valuation offers limited margin of safety for new capital. We recommend a 'Hold' for current investors to ride the execution momentum.",
+  "disclaimer": "This is an AI-generated investment research report and should not be considered professional financial advice. Do your own research.",
+  "processingMetadata": {
+    "timestamp": "2026-07-01T12:55:00Z",
+    "model": "llama-3.3-70b-instruct"
+  },
+  "sources": [
+    "Tavily Search API",
+    "SEC Filings & Market Reports",
+    "Financial News Feeds"
+  ]
+}

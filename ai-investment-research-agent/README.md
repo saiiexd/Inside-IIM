@@ -68,6 +68,17 @@ I have generated complete, structured JSON outputs demonstrating the system's sc
 ## What I would improve with more time
 While this assignment is functionally complete, a true enterprise version would require Vector Databases, Server-Sent Events, and parallel graph execution. Please see [docs/FUTURE_IMPROVEMENTS.md](./docs/FUTURE_IMPROVEMENTS.md) for my comprehensive roadmap.
 
+## Limitations
+- **Data Latency**: The system relies on the Tavily Search API for real-time data. Occasionally, search engines may return slightly outdated trailing-twelve-month (TTM) figures compared to a direct Bloomberg Terminal feed.
+- **Vercel Hobby Tier**: The deployment is currently configured for Vercel's Hobby Tier, which has a strict 60-second execution limit. Extremely obscure companies may cause the LLM to take longer than 60 seconds to process, resulting in a server timeout.
+- **Hallucination Risk**: While Zod schemas strictly enforce output formatting, the underlying LLM (Llama 3.3) may still occasionally hallucinate qualitative narratives if the search context is sparse.
+
+## Acknowledgements
+- **LangChain & LangGraph**: For providing the incredible open-source framework that powers the state-machine orchestration.
+- **OpenRouter**: For democratizing access to massive frontier models like Llama 3.3 70B.
+- **Tavily**: For building an API explicitly designed to feed clean, structured context into LLMs.
+- **InsideIIM / Altuni AI Labs**: For providing a rigorous, challenging, and highly practical assignment prompt that pushed the boundaries of my AI engineering capabilities.
+
 ---
 
 > **Bonus Requirement Note**: The complete LLM conversation transcript logs created during the development of this project, along with a summary of how AI was utilized, have been exported and are available in the [llm-development-logs/](./llm-development-logs) directory.

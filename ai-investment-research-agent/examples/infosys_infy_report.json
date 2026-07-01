@@ -1,0 +1,141 @@
+{
+  "companyOverview": {
+    "companyName": "Infosys Limited",
+    "ticker": "INFY",
+    "headquarters": "Bengaluru, India",
+    "ceo": "Salil Parekh",
+    "foundingYear": 1981,
+    "industry": "IT Services & Consulting",
+    "sector": "Technology",
+    "productsAndServices": [
+      "Digital Transformation Consulting",
+      "Application Development and Maintenance",
+      "Cloud Migration (Infosys Cobalt)",
+      "Enterprise AI Solutions (Infosys Topaz)",
+      "Core Banking Software (Finacle)"
+    ],
+    "businessModel": "B2B IT services model leveraging global delivery (offshore arbitrage) to provide high-margin consulting, software development, and infrastructure management to Fortune 500 enterprises.",
+    "marketPosition": "The second-largest Indian IT services firm, highly respected globally for its corporate governance and digital transformation capabilities.",
+    "competitiveAdvantages": [
+      "Massive, highly trained offshore engineering talent pool",
+      "Decades-long relationships with global enterprise clients",
+      "Proprietary platforms like Finacle and Topaz"
+    ],
+    "customerSegments": [
+      "Financial Services & Insurance (BFSI)",
+      "Retail & CPG",
+      "Manufacturing",
+      "Energy & Utilities"
+    ],
+    "companyOverview": "Infosys is a bellwether of the Indian IT industry, famous for pioneering the global delivery model. It helps enterprises worldwide navigate their digital transformations. Currently, the company is pivoting heavily into generative AI and cloud optimization to offset a broader macroeconomic slowdown in discretionary IT spending."
+  },
+  "financialSummary": {
+    "revenueGrowthTrends": "Revenue growth has moderated significantly to the low single digits as global macroeconomic uncertainty causes clients to delay discretionary IT projects.",
+    "profitability": "Highly profitable. Operating margins remain resilient (around 20-21%), protected by aggressive cost optimization, pyramid rationalization, and reduced subcontractor reliance.",
+    "operatingMargins": "Stable, though facing pressure from wage inflation and pricing negotiations in a tough macro environment.",
+    "cashFlowQuality": "Exceptional free cash flow generation, leading to consistent dividends and massive share buyback programs.",
+    "debtLevels": "Zero debt. The company holds a massive cash reserve.",
+    "valuationConcerns": "Valuations have cooled from their pandemic-era peaks, now trading at a reasonable multiple that reflects the slower growth environment.",
+    "marketCapitalization": "$75 Billion+",
+    "earningsTrends": "Earnings are stable, heavily supported by margin defense and share buybacks rather than top-line revenue expansion.",
+    "overallFinancialStrength": "A pristine financial fortress with absolutely zero liquidity or solvency risks.",
+    "confidenceLevel": "High"
+  },
+  "newsSummary": {
+    "positiveCatalysts": [
+      "Winning multiple mega-deals (total contract value over $1B) focused on cost optimization.",
+      "Aggressive rollout of Infosys Topaz to capture enterprise AI demand.",
+      "Successful completion of large share buyback programs."
+    ],
+    "negativeDevelopments": [
+      "Client pullbacks in the vital BFSI (Banking and Financial Services) sector.",
+      "Unexpected executive departures at the senior leadership level.",
+      "Guidance cuts for the current fiscal year."
+    ],
+    "marketSentiment": "Neutral",
+    "recentSummary": "The news cycle reflects a tough macro environment with delayed client decision-making, offset by massive cost-takeout deal wins and AI pivot announcements."
+  },
+  "swotAnalysis": {
+    "strengths": [
+      "Deeply entrenched in the core operations of Fortune 500 clients.",
+      "Impeccable balance sheet and free cash flow generation.",
+      "Industry-leading digital capabilities (Cloud, AI, Cyber)."
+    ],
+    "weaknesses": [
+      "Heavy reliance on the North American market and the BFSI sector.",
+      "Struggling to retain top-level executive talent in recent quarters."
+    ],
+    "opportunities": [
+      "Generative AI represents a massive consulting and implementation opportunity.",
+      "Vendor consolidation trends favor large, stable players like Infosys over smaller peers.",
+      "Expansion in the European market."
+    ],
+    "threats": [
+      "A prolonged US recession would severely impact discretionary IT budgets.",
+      "AI coding tools (Copilot) structurally reducing the need for offshore entry-level developers.",
+      "Protectionist visa policies in the US and UK."
+    ]
+  },
+  "riskAnalysis": {
+    "operationalRisk": {
+      "level": "Low",
+      "explanation": "Mastery of the global delivery model and resource utilization."
+    },
+    "financialRisk": {
+      "level": "Low",
+      "explanation": "Zero debt and immense cash reserves."
+    },
+    "technologicalRisk": {
+      "level": "Medium",
+      "explanation": "Must navigate the threat of AI potentially disrupting the traditional 'time and materials' billing model."
+    },
+    "regulatoryRisk": {
+      "level": "Medium",
+      "explanation": "H-1B and L-1 visa regulations in the US pose a constant, though manageable, headwind."
+    },
+    "competitiveRisk": {
+      "level": "Medium",
+      "explanation": "Fierce competition from TCS, Accenture, and Cognizant for mega-deals."
+    },
+    "geopoliticalExposure": {
+      "level": "Medium",
+      "explanation": "Highly dependent on Western economies (US/Europe) for revenue, while talent sits in India."
+    },
+    "executionRisk": {
+      "level": "Low",
+      "explanation": "Salil Parekh has successfully stabilized the company and returned it to industry-matching growth."
+    },
+    "valuationRisk": {
+      "level": "Low",
+      "explanation": "The stock has already corrected and is trading at a reasonable multiple factoring in the slow growth."
+    },
+    "macroeconomicSensitivity": {
+      "level": "High",
+      "explanation": "IT services are highly cyclical and entirely dependent on corporate capital expenditure budgets."
+    }
+  },
+  "investmentScore": 60,
+  "confidenceScore": 88,
+  "bullCase": [
+    "The macro environment will eventually turn, unleashing pent-up demand for digital transformation.",
+    "Infosys is winning massive cost-optimization deals that provide long-term revenue visibility.",
+    "The 4%+ dividend yield and aggressive buybacks provide a strong floor for the stock."
+  ],
+  "bearCase": [
+    "Generative AI is deflationary for traditional coding, structurally destroying the offshore headcount model.",
+    "Discretionary spending in BFSI (their largest vertical) is not recovering anytime soon.",
+    "Executive attrition points to internal cultural or strategic friction."
+  ],
+  "finalRecommendation": "Hold",
+  "executiveSummary": "Infosys is a fundamentally flawless company navigating a difficult macroeconomic cycle. While the balance sheet is pristine and cash returns to shareholders are excellent, top-line growth has effectively stalled as enterprises delay discretionary IT spending. The looming, unquantifiable threat of generative AI disrupting the core offshore billing model adds long-term uncertainty. However, at current valuations, the downside is protected by strong dividends and buybacks. We recommend a 'Hold' for income-oriented investors, waiting for a clear inflection point in global IT budgets before turning bullish.",
+  "disclaimer": "This is an AI-generated investment research report and should not be considered professional financial advice. Do your own research.",
+  "processingMetadata": {
+    "timestamp": "2026-07-01T13:00:00Z",
+    "model": "llama-3.3-70b-instruct"
+  },
+  "sources": [
+    "Tavily Search API",
+    "SEC Filings & Market Reports",
+    "Financial News Feeds"
+  ]
+}
