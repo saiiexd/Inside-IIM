@@ -9,7 +9,7 @@ export const riskAssessmentNode = async (
 ): Promise<Partial<GraphState>> => {
   const companyName = state.normalizedCompanyName ?? state.companyName;
   try {
-    const structuredLlm = getLLM(0.1, "qwen/qwen-2.5-72b-instruct:free").withStructuredOutput(riskAssessmentSchema, {
+    const structuredLlm = getLLM(0.1, "google/gemini-2.0-flash-lite-preview-02-05:free").withStructuredOutput(riskAssessmentSchema, {
       name: "risk_assessment",
     });
 

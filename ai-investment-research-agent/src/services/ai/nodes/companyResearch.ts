@@ -15,7 +15,7 @@ export const companyResearchNode = async (
       `${companyName} company overview: founded, CEO, headquarters, business model, products, revenue, industry sector`,
     );
 
-    const structuredLlm = getLLM(0.1, "qwen/qwen-2.5-72b-instruct:free").withStructuredOutput(companyResearchSchema, {
+    const structuredLlm = getLLM(0.1, "meta-llama/llama-3.3-70b-instruct:free").withStructuredOutput(companyResearchSchema, {
       name: "company_research",
     });
 

@@ -15,7 +15,7 @@ export const newsAnalysisNode = async (
       `${companyName} latest news 2024 2025: earnings, product launch, layoffs, regulation, lawsuit, leadership, acquisition`,
     );
 
-    const structuredLlm = getLLM(0.1, "mistralai/mistral-nemo:free").withStructuredOutput(newsAnalysisSchema, {
+    const structuredLlm = getLLM(0.1, "meta-llama/llama-3.3-70b-instruct:free").withStructuredOutput(newsAnalysisSchema, {
       name: "news_analysis",
     });
 
