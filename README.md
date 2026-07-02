@@ -100,6 +100,3 @@ graph TD
 - **Streaming UI**: I would implement LangChain's streaming API to stream the JSON tokens to the frontend in real-time, so the user can see the report building itself dynamically instead of waiting for a single loading spinner.
 - **Interactive Chat**: After the report is generated, I would add a chat interface allowing the user to ask the agent follow-up questions (e.g., "Why did you rate the regulatory risk so high?").
 
----
-
-> **Bonus Requirement Note**: The complete LLM conversation transcript logs created during the development of this project have been exported and are available in the root directory as `LLM_CHAT_TRANSCRIPT.jsonl`.
