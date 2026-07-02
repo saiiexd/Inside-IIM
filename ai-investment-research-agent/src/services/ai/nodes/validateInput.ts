@@ -19,7 +19,7 @@ export const validateInputNode = async (
   }
 
   try {
-    const structuredLlm = getLLM(0).withStructuredOutput(validationSchema, {
+    const structuredLlm = getLLM(0, "google/gemini-2.5-flash:free").withStructuredOutput(validationSchema, {
       name: "validate_company",
     });
 

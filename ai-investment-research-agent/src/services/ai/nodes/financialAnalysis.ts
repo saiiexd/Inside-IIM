@@ -10,12 +10,12 @@ export const financialAnalysisNode = async (
 ): Promise<Partial<GraphState>> => {
   const companyName = state.normalizedCompanyName ?? state.companyName;
   try {
-    const searchTool = getTavilySearchTool(5);
+    const searchTool = getTavilySearchTool(3);
     const searchResult = await searchTool.invoke(
       `${companyName} financial results: revenue growth, earnings, profit margin, debt, free cash flow, market cap, valuation 2024`,
     );
 
-    const structuredLlm = getLLM(0.1).withStructuredOutput(financialAnalysisSchema, {
+    const structuredLlm = getLLM(0.1, "meta-llama/llama-3.3-70b-instruct:free").withStructuredOutput(financialAnalysisSchema, {
       name: "financial_analysis",
     });
 

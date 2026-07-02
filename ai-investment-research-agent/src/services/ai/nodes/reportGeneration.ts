@@ -13,7 +13,7 @@ export const reportGenerationNode = async (
 ): Promise<Partial<GraphState>> => {
   const companyName = state.normalizedCompanyName ?? state.companyName;
   try {
-    const structuredLlm = getLLM(0.2).withStructuredOutput(executiveSummarySchema, {
+    const structuredLlm = getLLM(0.2, "meta-llama/llama-3.3-70b-instruct:free").withStructuredOutput(executiveSummarySchema, {
       name: "executive_summary",
     });
 

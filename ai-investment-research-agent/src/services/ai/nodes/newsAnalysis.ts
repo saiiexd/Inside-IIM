@@ -10,12 +10,12 @@ export const newsAnalysisNode = async (
 ): Promise<Partial<GraphState>> => {
   const companyName = state.normalizedCompanyName ?? state.companyName;
   try {
-    const searchTool = getTavilySearchTool(6);
+    const searchTool = getTavilySearchTool(3);
     const searchResult = await searchTool.invoke(
       `${companyName} latest news 2024 2025: earnings, product launch, layoffs, regulation, lawsuit, leadership, acquisition`,
     );
 
-    const structuredLlm = getLLM(0.1).withStructuredOutput(newsAnalysisSchema, {
+    const structuredLlm = getLLM(0.1, "mistralai/mistral-nemo:free").withStructuredOutput(newsAnalysisSchema, {
       name: "news_analysis",
     });
 

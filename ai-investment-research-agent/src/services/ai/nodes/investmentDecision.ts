@@ -9,7 +9,7 @@ export const investmentDecisionNode = async (
 ): Promise<Partial<GraphState>> => {
   const companyName = state.normalizedCompanyName ?? state.companyName;
   try {
-    const structuredLlm = getLLM(0.3).withStructuredOutput(investmentDecisionSchema, {
+    const structuredLlm = getLLM(0.1, "google/gemini-2.5-flash:free").withStructuredOutput(investmentDecisionSchema, {
       name: "investment_decision",
     });
 

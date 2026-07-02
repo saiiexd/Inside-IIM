@@ -9,7 +9,7 @@ export const swotAnalysisNode = async (
 ): Promise<Partial<GraphState>> => {
   const companyName = state.normalizedCompanyName ?? state.companyName;
   try {
-    const structuredLlm = getLLM(0.2).withStructuredOutput(swotAnalysisSchema, {
+    const structuredLlm = getLLM(0.1, "google/gemini-2.0-flash-lite-preview-02-05:free").withStructuredOutput(swotAnalysisSchema, {
       name: "swot_analysis",
     });
 
